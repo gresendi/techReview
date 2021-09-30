@@ -2,8 +2,6 @@ const { axios } = window
 
 
 
-console.log("Opened index")
-
 
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.removeItem('token')
@@ -19,9 +17,9 @@ axios.get('/api/items',{
 .then(({data:items})=>{
   
   items.forEach(item => {
-    console.log(item)
+    
     let itemsUser = item.user.username
-    console.log(itemsUser)
+    
     axios.get('/api/user', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
