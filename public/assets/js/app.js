@@ -43,7 +43,10 @@ axios.get('/api/items',{
     document.getElementById('techItems').prepend(cardContainer)
     
   });
-}).catch(err=>console.log(err))
+}).catch(err=>{
+  console.log(err)
+  window.location='/login.html'
+})
 
 
 document.getElementById('addItem').addEventListener('click', event =>{
