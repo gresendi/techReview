@@ -2,8 +2,6 @@ const { axios } = window
 
 
 
-console.log("Opened index")
-
 
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.removeItem('token')
@@ -19,9 +17,20 @@ axios.get('/api/items',{
 .then(({data:items})=>{
   
   items.forEach(item => {
-    let cardContainer = document.createElement('div')
-    cardContainer.className = "card mb-3"
-    cardContainer.innerHTML = `
+    
+    let itemsUser = item.user.username
+    
+    axios.get('/api/user', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(({data})=>{
+      
+      if(itemsUser===data.username){
+        console.log("same")
+        let cardContainer = document.createElement('div')
+        cardContainer.className = "card mb-3"
+        cardContainer.innerHTML = `
     <div class="row g-0">
             <div class="col-md-4">
               <img src="${item.image}" class="img-fluid rounded-start" alt="...">
@@ -30,20 +39,58 @@ axios.get('/api/items',{
               <div class="card-body">
                 <h3 class="card-title">${item.name}</h3>
                 <a href = "${item.purchase}" class="card-title">Link to purchasing site</a>
+                <div>
                 <a href = "${item.review}" class="card-title">link to review</a>
-
+                </div>
                 <!-- <p class="card-text"></p> -->
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <button data-id= "${item._id}" type="button" class="btn btn-danger delete">delete</button>
               </div>
             </div>
           </div>
 
     
     `
-    document.getElementById('techItems').prepend(cardContainer)
+        document.getElementById('techItems').prepend(cardContainer)
+      }else{
+        console.log("different")
+        let cardContainer = document.createElement('div')
+        cardContainer.className = "card mb-3"
+        cardContainer.innerHTML = `
+    <div class="row g-0">
+            <div class="col-md-4">
+              <img src="${item.image}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">${item.name}</h3>
+                <a href = "${item.purchase}" class="card-title">Link to purchasing site</a>
+                <div>
+                <a href = "${item.review}" class="card-title">link to review</a>
+                </div>
+                <!-- <p class="card-text"></p> -->
+                
+              </div>
+            </div>
+          </div>
+
+    
+    `
+        document.getElementById('techItems').prepend(cardContainer)
+
+
+
+      }
+
+
+      console.log(data)
+    })
+
     
   });
-}).catch(err=>console.log(err))
+}).catch(err=>{
+  console.log(err)
+  window.location='/login.html'
+})
 
 
 document.getElementById('addItem').addEventListener('click', event =>{
@@ -88,7 +135,7 @@ document.getElementById('addItem').addEventListener('click', event =>{
                 <a href = "${item.review}" class="card-title">link to review</a>
 
                 <!-- <p class="card-text"></p> -->
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+               
               </div>
             </div>
           </div>
@@ -105,4 +152,25 @@ document.getElementById('addItem').addEventListener('click', event =>{
 
 
 
+})
+
+document.addEventListener('click',event =>{
+  event.preventDefault()
+
+
+  if(event.target.classList.contains('delete')){
+    console.log("deleting")
+    let id = event.target.dataset.id 
+    console.log(id)
+
+    axios.delete(`/api/items/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }).then(() => {
+      console.log("item deleted")
+    })
+
+  }
+  
 })
