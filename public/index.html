@@ -6,10 +6,71 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>Its working</h1>
+  <h1>Nav goes here</h1>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">  
+      <form>
+        <div class="mb-3">
+          <label for="itemName" class="form-label">Item Name</label>
+          <input type="text" class="form-control" id="itemName" placeholder="Enter the items name">
+        </div>
+        <div class="mb-3">
+          <label for="itemUrl" class="form-label">Items image url</label>
+          <input type="text" class="form-control" id="itemUrl" placeholder="Enter the items image url">
+        </div>
+        <div class="mb-3">
+          <label for="itemPurchase" class="form-label">Purchase site</label>
+          <input type="text" class="form-control" id="itemPurchase" placeholder="Enter the purchase link">
+        </div>
+        <div class="mb-3">
+          <label for="itemReview" class="form-label">Review Link</label>
+          <input type="text" class="form-control" id="itemReview" placeholder="Enter the review link">
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">add item</button>
+        </div>
+
+      </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div id="techItems" class="col-12">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://cdn.mos.cms.futurecdn.net/c3EevbML8pgmkby5ueGgJi-970-80.jpg.webp" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">MacBook</h3>
+                <a href = "https://www.amazon.com/Apple-MacBook-13-inch-256GB-Storage/dp/B08N5LLDSG/ref=sr_1_3?dchild=1&keywords=macbook&qid=1633027040&sr=8-3" class="card-title">Link to purchasing site</a>
+                <a href = "https://www.youtube.com/watch?v=f4g2nPY-VZc" class="card-title">link to review</a>
+
+                <!-- <p class="card-text"></p> -->
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script type="module" src="./assets/js/app.js"></script>
 </body>
 
 </html>
