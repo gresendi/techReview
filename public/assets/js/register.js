@@ -19,6 +19,7 @@ document.getElementById('register').addEventListener('click', event => {
     password: passwordInput
   }).then(()=>{
     console.log("user created")
+    window.location= '/login.html'
     
   })
   // console.log(usernameInput);
