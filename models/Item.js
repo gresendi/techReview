@@ -1,12 +1,20 @@
 const { model, Schema } = require('mongoose')
 
 const Item = new Schema({
-  text: {
+  name: {
     type: String,
     required: true
   },
-  isDone: {
-    type: Boolean,
+  image: {
+    type: String,
+    required: true
+  },
+  purchase:{
+    type:String,
+    required:true
+  },
+  review:{
+    type:String,
     required: true
   },
   user: {
